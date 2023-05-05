@@ -1,6 +1,6 @@
 const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals')
 const {User} = require('./') 
-const Deck = require('./Decks')// import User model
+const Deck = require('./Deck')// import User model
 const {db} = require("../db/config.js")
 
 // define in global scope
@@ -26,7 +26,6 @@ describe('User', () => {
 
 
   test("check for assocciation with deck" , async ()=>{
-    console.log(user);
      await user.createDeck({name: "Bill", xp: 99 })
     const userDeck = await user.getDeck();
     // const deck = await Deck.findOne({where: {name: "Bill"}})

@@ -1,25 +1,25 @@
 const User = require('./User')
-const Deck = require('./Decks')
-const Cards = require('./Cards')
-const Attacks = require('./Attacks')
+const Deck = require('./Deck')
+const Card = require('./Card')
+const Attack = require('./Attack')
 // import the rest of your models above
 
 //set up the associations here
 User.hasOne(Deck)
 Deck.belongsTo(User)
 
-Deck.belongsToMany(Cards, {through: "DecksCards"});
-Cards.belongsTo(Deck)
+Deck.hasMany(Card);
+Card.belongsTo(Deck)
 
 
-Cards.belongsToMany(Attacks, {through: "CardsAttack"});
-Attacks.belongsToMany(Cards, {through: "CardsAttack"});
+Card.belongsToMany(Attack, {through: "CardsAttack"});
+Attack.belongsToMany(Card, {through: "CardsAttack"});
 
 
 // and then export them all below
 module.exports = {
     User,
     Deck,
-    Cards,
-    Attacks
+    Card,
+    Attack
 }
